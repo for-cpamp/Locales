@@ -49,6 +49,26 @@ Distribution Registry
 
 Pack paths are content-addressed. An artifact at a given SHA-256 path is immutable.
 
+## Automated distribution
+
+Every accepted push to `main` uses the same deterministic `dist/` build for
+two outputs:
+
+1. a 90-day GitHub Actions artifact for audit and acceptance;
+2. the production GitHub Pages Registry used by CPAMP clients.
+
+Expected Registry endpoint:
+
+```text
+https://for-cpamp.github.io/Locales/catalog.json
+```
+
+The Pages deployment requires a one-time repository setting:
+**Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+See [docs/registry-distribution.md](docs/registry-distribution.md) for the
+distribution and trust model.
+
 ## Language tiers
 
 | Tier | Examples | Maintenance |
