@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://for-cpamp.github.io/Locales/schema/catalog-v1.schema.json",
+  "title": "CPAMP Community Locale Catalog v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "messageContractVersion",
+    "sourceRevision",
+    "languages"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "messageContractVersion": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "sourceRevision": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "locale",
+          "nativeName",
+          "direction",
+          "coverage",
+          "messageContractVersion",
+          "sourceRevision",
+          "artifact",
+          "sha256",
+          "size"
+        ],
+        "properties": {
+          "locale": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 64
+          },
+          "nativeName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "direction": {
+            "enum": [
+              "ltr",
+              "rtl"
+            ]
+          },
+          "coverage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "messageContractVersion": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sourceRevision": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          },
+          "artifact": {
+            "type": "string",
+            "pattern": "^packs/[^/]+/[a-f0-9]{64}\\\\.json$"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    }
+  }
+}

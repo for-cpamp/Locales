@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://for-cpamp.github.io/Locales/schema/language-pack-v1.schema.json",
+  "title": "CPAMP Language Pack v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "messageContractVersion",
+    "locale",
+    "nativeName",
+    "direction",
+    "translations"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "messageContractVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "locale": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64
+    },
+    "nativeName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "direction": {
+      "enum": [
+        "ltr",
+        "rtl"
+      ]
+    },
+    "translations": {
+      "$ref": "#/$defs/messageObject"
+    }
+  },
+  "$defs": {
+    "messageObject": {
+      "type": "object",
+      "propertyNames": {
+        "not": {
+          "enum": [
+            "__proto__",
+            "prototype",
+            "constructor"
+          ]
+        }
+      },
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "$ref": "#/$defs/messageObject"
+          }
+        ]
+      }
+    }
+  }
+}

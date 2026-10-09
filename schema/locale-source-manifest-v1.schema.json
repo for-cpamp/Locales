@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://for-cpamp.github.io/Locales/schema/locale-source-manifest-v1.schema.json",
+  "title": "CPAMP Community Locale Source Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "locale",
+    "nativeName",
+    "direction",
+    "status",
+    "publishable",
+    "provenance"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "locale": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64
+    },
+    "nativeName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "direction": {
+      "enum": [
+        "ltr",
+        "rtl"
+      ]
+    },
+    "status": {
+      "enum": [
+        "legacy-seed",
+        "community"
+      ]
+    },
+    "publishable": {
+      "type": "boolean"
+    },
+    "messageContractVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "ref",
+        "path",
+        "license"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string"
+        },
+        "ref": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+name: Translation issue
+description: Report a Community translation problem or propose a locale.
+title: "[locale] "
+labels:
+  - translation
+body:
+  - type: input
+    id: locale
+    attributes:
+      label: Locale
+      description: Canonical BCP-47 locale, for example ja-JP.
+      placeholder: ja-JP
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the incorrect, missing, or proposed translation.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Optional message key, screenshot, or wording rationale. Do not include credentials or private request content.

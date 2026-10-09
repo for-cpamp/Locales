@@ -1,0 +1,43 @@
+name: Sync CPAMP English source
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Explicit CPAMP tag, commit, or reviewed ref"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm run sync:upstream -- --ref "${{ inputs.ref }}"
+      - run: npm run validate
+      - name: Open source-sync PR when changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SYNC_REF: ${{ inputs.ref }}
+        run: |
+          if git diff --quiet -- source/en.json; then
+            echo "No source change"
+            exit 0
+          fi
+          branch="sync/cpamp-${GITHUB_RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add source/en.json
+          git commit -m "chore: sync CPAMP English source from ${SYNC_REF}"
+          git push origin "$branch"
+          gh pr create --base main --head "$branch" --title "chore: sync CPAMP English source from ${SYNC_REF}" --body "Automated source-sync PR. Review the upstream ref and message-contract impact before merging."
