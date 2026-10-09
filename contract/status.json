@@ -1,0 +1,13 @@
+{
+  "status": "pending-i18n-a",
+  "messageContractVersion": null,
+  "publishable": false,
+  "upstream": {
+    "repository": "seakee/CPA-Manager-Plus"
+  },
+  "notes": [
+    "Language Pack v1 envelope is reserved, but messageContractVersion 1 is not frozen yet.",
+    "Legacy zh-TW and ru seeds may contain pre-contract array-valued messages.",
+    "No locale may become publishable until CPAMP I18N-A is accepted."
+  ]
+}
