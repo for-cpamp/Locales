@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "locale": "ru",
+  "nativeName": "Русский",
+  "direction": "ltr",
+  "status": "legacy-seed",
+  "publishable": false,
+  "provenance": {
+    "repository": "seakee/CPA-Manager-Plus",
+    "ref": "1ea181093df14a4297c12a3ea3050acd84849cdc",
+    "path": "apps/web/src/i18n/locales/ru.json",
+    "license": "MIT"
+  }
+}
